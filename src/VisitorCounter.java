@@ -29,5 +29,20 @@ public class VisitorCounter {
 
     public static void main(String[] args) {
 
+        VisitorCounter v1 = new VisitorCounter("Ahmed");
+        VisitorCounter v2 = new VisitorCounter("khalid");
+        VisitorCounter v3 = new VisitorCounter("feras");
+
+        v1.recordVisits();
+        v1.recordVisits();
+
+        v2.recordVisits();
+        v3.recordVisits();
+        v3.recordVisits();
+        v3.recordVisits();
+
+
+        displayTotalVisitors();
+
     }
 }
