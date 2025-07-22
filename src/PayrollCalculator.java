@@ -67,21 +67,71 @@ public class PayrollCalculator {
             return total_tax_amount = (0.7 * grossPay);
         }
     }
-    public static void processPayroll(String[] employeeTypes, double[] hours,
-                                      double[] rates, String[] names) {
+    public static void processPayroll(String[] employeeTypes, double[] hours, double[] rates, String[] names) {
+        int count = Math.min(Math.min(employeeTypes.length, hours.length), Math.min(rates.length, names.length));
+
+        double totalPay = 0;
+        double highestPay = Double.MIN_VALUE;
+        double lowestPay = Double.MAX_VALUE;
+        String highestPaid = "";
+        String lowestPaid = "";
+        int overtimeCount = 0;
 
 
-// Calculate pay for each employee
-// Find: highest paid employee, lowest paid employee, average pay
-// Count how many employees worked overtime (>40 hours)
-// Display results in a formatted table
-// Handle arrays of different lengths gracefully
+
+        for (int i = 0; i < count; i++) {
+            double overtimeHours = (hours[i] > 40) ? hours[i] - 40 : 0;
+
+            double grossPay = calculateWeeklyPay(employeeTypes[i], hours[i], rates[i]);
+            double netPay = calculateTaxDeduction(grossPay, false); // or true if insured
+
+            totalPay += netPay;
+
+            if (netPay > highestPay) {
+                highestPay = netPay;
+                highestPaid = names[i];
+            }
+
+            if (netPay < lowestPay) {
+                lowestPay = netPay;
+                lowestPaid = names[i];
+            }
+
+            if (hours[i] > 40) {
+                overtimeCount++;
+            }
+
+            System.out.printf("%-15s %-12s %-12.1f %-10.2f %-12.2f%n",
+                    names[i], employeeTypes[i], hours[i], grossPay, netPay);
+        }
+
+        double averagePay = totalPay / count;
+
+        System.out.println("\nSummary:");
+        System.out.println("Highest Paid: " + highestPaid + " (" + highestPay + " OMR)");
+        System.out.println("Lowest Paid: " + lowestPaid + " (" + lowestPay + " OMR)");
+        System.out.printf("Average Net Pay: %.2f OMR%n", averagePay);
+        System.out.println("Employees with overtime (>40 hrs): " + overtimeCount);
     }
 
 
 
+
     public static void main(String[] args) {
+
+
+        String[] types = {"FULL_TIME", "PART_TIME", "CONTRACTOR", "INTERN",
+                "FULL_TIME"};
+        double[] hours = {45, 20, 35, 15, 50};
+        double[] rates = {25.0, 18.0, 40.0, 12.0, 30.0};
+        String[] names = {"Alice", "Bob", "Charlie", "Diana", "Eve"};
+
         System.out.println(calculateWeeklyPay("FULL_TIME",40.0,18.0));
+
+        processPayroll(types,hours,rates,names);
+
+
+
     }
 
 
