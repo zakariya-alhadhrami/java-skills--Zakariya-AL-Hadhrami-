@@ -5,6 +5,13 @@ public class PattrenMaker {
 
         for (int i = 1; i<rows+1;i++){
 
+            for (int j = 1; j <= i;j++){
+
+                System.out.print(j + " ");
+            }
+
+            System.out.println();
+
 
 
 
@@ -16,9 +23,7 @@ public class PattrenMaker {
 // 1 2 3 4
 // (for rows = 4)
     }
-
-
-
+    
 
     public static void printMultiplicationTable(int number, int limit) {
 
@@ -31,10 +36,11 @@ public class PattrenMaker {
 
     public static void main(String[] args) {
 
+        printNumberTriangle(4);
+
+        System.out.println("--------------------------------------");
+
         printMultiplicationTable(5,12);
-
-
-
     }
 
 }
