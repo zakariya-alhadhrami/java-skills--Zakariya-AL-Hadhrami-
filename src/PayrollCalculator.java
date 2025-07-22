@@ -48,6 +48,38 @@ public class PayrollCalculator {
 
     }
 
+    public static double calculateTaxDeduction(double grossPay, boolean
+            hasHealthInsurance) {
+        double total_tax_amount;
+        if (hasHealthInsurance == true){
+            return grossPay - 50;
+        }
+        if (grossPay >= 0.0 && grossPay <= 500.0){
+            return total_tax_amount = (0.9 * grossPay);
+        } else if (grossPay >= 501.0 && grossPay <= 1000) {
+
+            return total_tax_amount = (0.85 * grossPay);
+
+        } else if (grossPay >= 1001.0 && grossPay <= 2000) {
+            return total_tax_amount = (0.8 * grossPay);
+        }
+        else {
+            return total_tax_amount = (0.7 * grossPay);
+        }
+    }
+    public static void processPayroll(String[] employeeTypes, double[] hours,
+                                      double[] rates, String[] names) {
+
+
+// Calculate pay for each employee
+// Find: highest paid employee, lowest paid employee, average pay
+// Count how many employees worked overtime (>40 hours)
+// Display results in a formatted table
+// Handle arrays of different lengths gracefully
+    }
+
+
+
     public static void main(String[] args) {
         System.out.println(calculateWeeklyPay("FULL_TIME",40.0,18.0));
     }
