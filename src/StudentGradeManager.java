@@ -10,7 +10,7 @@ public class StudentGradeManager {
 
             String name = names[i];
             String storenames = "";
-            for (int j = name.length(); j > -1; i--){
+            for (int j = name.length(); j > 0; i--){
                 storenames += name.charAt(j);
             }
 
@@ -45,10 +45,35 @@ public class StudentGradeManager {
 
 
     }
+    public static String[] findFailingStudents(String[] names, int[] scores)
+    {
+        String[] notgoodStudent = new String[names.length];
+
+        char letter = 'D';
+
+        for (int i = 0; i < names.length;i++){
+
+            int score = scores [i];
+
+            if(letter == getLetterGrade(score)){
+                notgoodStudent[i] += names[i];
+            }
+
+        }
+
+        return notgoodStudent;
+// Return array of names where score is below 60
+// Use loops to check each student
+    }
     
 
 
     public static void main(String[] args) {
+
+        String[] students = {"Alice", "Bob", "Charlie", "Diana"};
+        int[] scores = {95, 67, 45, 78};
+
+        System.out.println(findFailingStudents(students,scores));
 
     }
 
