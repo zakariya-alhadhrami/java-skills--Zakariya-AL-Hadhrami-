@@ -20,10 +20,21 @@ public class Textprocessor {
 
         return 0;
     }
+    public static String replaceWord(String text, String oldWord, String
+            newWord) {
+
+        return text.replace(oldWord,newWord);
+
+    }
+
 
     public static void main(String[] args) {
-        
+        String test = "Java is fun and Java is powerful";
+        System.out.println("number of words are "+countWords(test));
 
+        System.out.println("---------------------------------------");
+
+        System.out.println(replaceWord(test, "Java", "Programming"));
 
 
     }
