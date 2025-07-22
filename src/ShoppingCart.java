@@ -51,6 +51,26 @@ public class ShoppingCart {
         return expinsiveItem;
     }
 
+    // Count items above a certain price
+    public static int countExpensiveItems(double[] prices, double threshold)
+    {
+        int count = 0;
+
+        for (int i = 0; i < prices.length;i++){
+
+            if (prices[i] > threshold) {
+                count++;
+
+            }
+
+        }
+
+        return count;
+// Count how many items cost more than threshold
+    }
+
+
+
 
 
     public static void main(String[] args) {
@@ -58,8 +78,15 @@ public class ShoppingCart {
         System.out.println("Regular customer total: $" + calculateTotal(cart,
                 "REGULAR"));
 
+        System.out.println("Premium customer total: $" + calculateTotal(cart,
+                "PREMIUM"));
+        System.out.println("VIP customer total: $" + calculateTotal(cart,
+                "VIP"));
+
 
         System.out.println("the most expensive price is: "+findMostExpensive(cart));
+
+        System.out.println("there are "+countExpensiveItems(cart,30)+" Items that are more than 30$ ");
 
 
 
