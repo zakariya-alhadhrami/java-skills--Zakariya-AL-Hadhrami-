@@ -28,11 +28,38 @@ public class ShoppingCart {
         return total;
     }
 
+    public static double findMostExpensive(double[] prices) {
+        double expinsiveItem = 0;
+
+        if(prices.length == 0){
+            System.out.println("the cart is empty.");
+        }
+        else{
+
+        for (int i = 0;i<prices.length;i++){
+
+            if (prices[i] > expinsiveItem) {
+
+                expinsiveItem = prices[i];
+
+            }
+
+        }
+
+        }
+
+        return expinsiveItem;
+    }
+
+
 
     public static void main(String[] args) {
         double[] cart = {25.99, 45.50, 12.99, 89.99, 15.75};
         System.out.println("Regular customer total: $" + calculateTotal(cart,
                 "REGULAR"));
+
+
+        System.out.println("the most expensive price is: "+findMostExpensive(cart));
 
 
 
